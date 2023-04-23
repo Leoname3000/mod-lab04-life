@@ -34,7 +34,7 @@ public class IntegrationTests
         Cell c8 = new Cell { IsAlive = false };
         Cell[,] expected = { { c0, c3, c6 }, { c1, c4, c7 }, { c2, c5, c8 } };
 
-        Assert.AreEqual(expected, actual);
+        CollectionAssert.AreEqual(expected, actual);
     }
 
     [TestMethod]
@@ -61,6 +61,6 @@ public class IntegrationTests
         Cell c8 = new Cell { IsAlive = false };
         Cell[,] expected = { { c0, c3, c6 }, { c1, c4, c7 }, { c2, c5, c8 } };
 
-        Assert.AreEqual(expected, actual);
+        CollectionAssert.AreEqual(expected, actual);
     }
 }}
