@@ -1,6 +1,7 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using cli_life;
 
-namespace Life.Test;
+namespace Life.Test {
 
 [TestClass]
 public class JsonReaderTests
@@ -23,4 +24,4 @@ public class JsonReaderTests
         };
         Assert.AreEqual(expected, actual);
     }
-}
+}}
