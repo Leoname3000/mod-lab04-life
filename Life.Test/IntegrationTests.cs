@@ -1,6 +1,7 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using cli_life;
 
-namespace Life.Test;
+namespace Life.Test {
 
 [TestClass]
 public class IntegrationTests
@@ -60,4 +61,4 @@ public class IntegrationTests
 
         Assert.AreEqual(expected, actual);
     }
-}
+}}
