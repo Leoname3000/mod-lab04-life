@@ -23,9 +23,7 @@ namespace cli_life
 
         public override bool Equals(object obj)
         {
-            if (obj == null)
-                return false;
-            if (obj.GetType() != GetType())
+            if (obj as Cell == null)
                 return false;
             Cell evaluated = (Cell) obj;
             if (evaluated.IsAlive == IsAlive)

@@ -49,9 +49,7 @@ namespace cli_life
         
         public override bool Equals(object obj)
         {
-            if (obj == null)
-                return false;
-            if (obj.GetType() != GetType())
+            if (obj as GameOfLife == null)
                 return false;
             GameOfLife evaluated = (GameOfLife) obj;
             if (evaluated.boardHeight == boardHeight &&

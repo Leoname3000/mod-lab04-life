@@ -98,24 +98,5 @@ namespace cli_life
                 }
             }
         }
-        
-        //public override bool Equals(object obj)
-        //{
-        //    if (obj == null)
-        //        return false;
-        //    if (obj.GetType() != GetType())
-        //        return false;
-        //    Board evaluated = (Board) obj;
-        //    if (evaluated.Columns == Columns && evaluated.Rows == Rows)
-        //    {
-        //        for (int x = 0; x < Columns; x++)
-        //            for (int y = 0; y < Rows; y++)
-        //                if (evaluated.Cells[x, y] != Cells[x, y])
-        //                    return false;
-        //        return true;
-        //    }
-        //    else
-        //        return false;
-        //}
     }
 }
