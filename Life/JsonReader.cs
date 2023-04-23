@@ -11,12 +11,5 @@ namespace cli_life
             GameOfLife contents = JsonSerializer.Deserialize<GameOfLife>(rawContents);
             return contents;
         }
-
-        public static Pattern ReadPattern(string pathToPattern)
-        {
-            string rawContents = File.ReadAllText(@pathToPattern);
-            Pattern contents = JsonSerializer.Deserialize<Pattern>(rawContents);
-            return contents;
-        }
     }
 }

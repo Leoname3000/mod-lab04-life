@@ -10,13 +10,11 @@ namespace cli_life
     {
         public int boardWidth { get; set; }
         public int boardHeight { get; set; }
-        //public int cellSize { get; set; }
         public double liveDensity { get; set; }
         public string liveSymbol { get; set; }
         public string deadSymbol { get; set; }
         public int iterations { get; set; }
         public int delay { get; set; }
-        public string pathToPatterns { get; set; }
         
         public Board board { get; set; }
         
@@ -25,7 +23,6 @@ namespace cli_life
             board = new Board(
                 width: boardWidth,
                 height: boardHeight,
-                //cellSize: cellSize,
                 liveDensity: liveDensity,
                 pathToState: pathToState);
         }
@@ -39,35 +36,34 @@ namespace cli_life
                     var cell = board.Cells[col, row];
                     if (cell.IsAlive)
                     {
-                        Console.Write('*');
+                        Console.Write(liveSymbol);
                     }
                     else
                     {
-                        Console.Write(' ');
+                        Console.Write(deadSymbol);
                     }
                 }
                 Console.Write('\n');
             }
         }
-
-        //public void Iterate()
-        //{
-        //    Console.Clear();
-        //    Render();
-        //    board.Advance();
-        //    Thread.Sleep(delay);
-        //}
-
-        public Dictionary<Pattern, int> Statistics(string pathToPatternsFolder)
+        
+        public override bool Equals(object obj)
         {
-            Dictionary<Pattern, int> statistics = new Dictionary<Pattern, int>();
-            foreach (string file in Directory.EnumerateFiles(pathToPatternsFolder, "*.json"))
-            {
-                string rawPattern = File.ReadAllText(file);
-                Pattern pattern = JsonSerializer.Deserialize<Pattern>(rawPattern);
-                statistics.Add(pattern, 0);
-            }
-            return statistics;
+            if (obj == null)
+                return false;
+            if (obj.GetType() != GetType())
+                return false;
+            GameOfLife evaluated = (GameOfLife) obj;
+            if (evaluated.boardHeight == boardHeight &&
+                evaluated.boardWidth == boardWidth &&
+                evaluated.liveDensity == liveDensity &&
+                evaluated.liveSymbol == liveSymbol &&
+                evaluated.deadSymbol == deadSymbol &&
+                evaluated.iterations == iterations &&
+                evaluated.delay == delay)
+                return true;
+            else
+                return false;
         }
     }
 }

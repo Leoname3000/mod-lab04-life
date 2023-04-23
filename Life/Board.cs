@@ -7,18 +7,13 @@ namespace cli_life
 {
     public class Board
     {
-        public readonly Cell[,] Cells;
-        //public readonly int CellSize;
-
+        public Cell[,] Cells;
+        
         public int Columns { get { return Cells.GetLength(0); } }
         public int Rows { get { return Cells.GetLength(1); } }
-        //public int Width { get { return Columns * CellSize; } }
-        //public int Height { get { return Rows * CellSize; } }
 
-        public Board(int width, int height, double liveDensity = .1, string pathToState = null)
+        public Board(int width, int height, double liveDensity = 0.5, string pathToState = null)
         {
-            //CellSize = cellSize;
-
             Cells = new Cell[width, height];
             for (int x = 0; x < Columns; x++)
                 for (int y = 0; y < Rows; y++)
@@ -84,11 +79,6 @@ namespace cli_life
             {
                 for (int y = 0; y < Rows; y++)
                 {
-                    //int xL = (x > 0) ? x - 1 : Columns - 1;
-                    //int xR = (x < Columns - 1) ? x + 1 : 0;
-                    //int yT = (y > 0) ? y - 1 : Rows - 1;
-                    //int yB = (y < Rows - 1) ? y + 1 : 0;
-
                     if (x > 0 && y > 0)
                         Cells[x, y].neighbors.Add(Cells[x - 1, y - 1]);
                     if (y > 0)
@@ -108,15 +98,24 @@ namespace cli_life
                 }
             }
         }
-
-        public void Print()
-        {
-            for (int y = 0; y < Rows; y++)
-            {
-                for (int x = 0; x < Columns; x++)
-                    Console.Write(Cells[x, y].IsAlive ? "#" : "0");
-                Console.Write("\n");
-            }
-        }
+        
+        //public override bool Equals(object obj)
+        //{
+        //    if (obj == null)
+        //        return false;
+        //    if (obj.GetType() != GetType())
+        //        return false;
+        //    Board evaluated = (Board) obj;
+        //    if (evaluated.Columns == Columns && evaluated.Rows == Rows)
+        //    {
+        //        for (int x = 0; x < Columns; x++)
+        //            for (int y = 0; y < Rows; y++)
+        //                if (evaluated.Cells[x, y] != Cells[x, y])
+        //                    return false;
+        //        return true;
+        //    }
+        //    else
+        //        return false;
+        //}
     }
 }

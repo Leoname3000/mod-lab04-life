@@ -100,12 +100,75 @@ def plot_statistics(patterns: list[Pattern], counts: list[int]):
         plt.show()
 
 
+def check_vertical_symmetry(state: list[str]):
+    all_pairs = 0
+    all_sym_pairs = 0
+    for row in state:
+        pairs = len(row) // 2
+        sym_pairs = 0
+        for i in range(0, pairs):
+            left = row[i]
+            right = row[len(row)-1 - i]
+            if left == right:
+                sym_pairs += 1
+        all_pairs += pairs
+        all_sym_pairs += sym_pairs
+    return all_sym_pairs / all_pairs
+
+
+def check_horizontal_symmetry(state: list[str]):
+    all_pairs = 0
+    all_sym_pairs = 0
+    for col_idx in range(0, len(state[0])):
+        pairs = len(state) // 2
+        sym_pairs = 0
+        for i in range(0, pairs):
+            upper = state[i][col_idx]
+            lower = state[len(state)-1 - i][col_idx]
+            if upper == lower:
+                sym_pairs += 1
+        all_pairs += pairs
+        all_sym_pairs += sym_pairs
+    return all_sym_pairs / all_pairs
+
+
+def count_living_cells(state: list[str]):
+    living_cells = 0
+    for row in state:
+        for cell in row:
+            if cell == '1':
+                living_cells += 1
+    return living_cells
+
+
+def count_dead_cells(state: list[str]):
+    dead_cells = 0
+    for row in state:
+        for cell in row:
+            if cell == '0':
+                dead_cells += 1
+    return dead_cells
+
+
 project_root_path = os.path.dirname(os.path.abspath(__file__))
 state_file_name = 'Example1.txt'
-
 s = read_state(f'{project_root_path}/States/{state_file_name}')
+# s = ['11', '01']
+
+vs = check_vertical_symmetry(s)
+hs = check_horizontal_symmetry(s)
+print(f'\nVertical symmetry: {round(vs * 100, 1)}%')
+print(f'Horizontal symmetry: {round(hs * 100, 1)}%')
+
+lc = count_living_cells(s)
+dc = count_dead_cells(s)
+print(f'\nLiving cells: {lc}')
+print(f'Dead cells: {dc}')
+print(f'Total cells: {lc + dc}')
+
 pns = read_patterns(f'{project_root_path}/Patterns')
 cts = count_patterns(s, pns)
+print(f'\nPatterns found: {sum(cts)}')
 
 plot_state(s)
 plot_statistics(pns, cts)

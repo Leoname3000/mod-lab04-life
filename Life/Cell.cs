@@ -20,5 +20,18 @@ namespace cli_life
         {
             IsAlive = IsAliveNext;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+            if (obj.GetType() != GetType())
+                return false;
+            Cell evaluated = (Cell) obj;
+            if (evaluated.IsAlive == IsAlive)
+                return true;
+            else
+                return false;
+        }
     }
 }

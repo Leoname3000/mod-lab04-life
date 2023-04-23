@@ -5,6 +5,5 @@
   "liveSymbol": "*",
   "deadSymbol": " ",
   "iterations": 100,
-  "delay": 100,
-  "pathToPatterns": "Life/Patterns"
+  "delay": 100
 }

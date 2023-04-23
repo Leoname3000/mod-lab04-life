@@ -14,11 +14,10 @@ namespace cli_life
         static void Main(string[] args)
         {
             string solutionRootPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.FullName;
-            Console.WriteLine(solutionRootPath);
             
             GameOfLife gameOfLife = JsonReader.ReadSettings($"{solutionRootPath}/Life/Settings.json");
-            gameOfLife.Reset($"{solutionRootPath}/States/2023-04-12T13:57:54.txt");
-            gameOfLife.Reset();
+            gameOfLife.Reset($"{solutionRootPath}/States/Example1.txt");
+            //gameOfLife.Reset();
             
             for(int i = 0; i < gameOfLife.iterations; i++)
             {
@@ -27,15 +26,7 @@ namespace cli_life
                 if (i < gameOfLife.iterations - 1) gameOfLife.board.Advance();
                 Thread.Sleep(gameOfLife.delay);
             }
-            
-            Print(gameOfLife);
-            gameOfLife.board.Print();
             gameOfLife.board.ExportState($"{solutionRootPath}/States");
-
-            void Print(GameOfLife g)
-            {
-                Console.WriteLine($"Board: {g.boardWidth} x {g.boardHeight};\nSymbols: {g.deadSymbol} / {g.liveSymbol};\nDelay: {g.delay}\nPath to patterns: {g.pathToPatterns}");
-            }
         }
     }
 }
